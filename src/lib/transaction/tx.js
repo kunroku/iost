@@ -9,8 +9,9 @@ class Tx {
     /**
      * 
      * @constructor
-     * @param {number} chainId mainnet = 1024, testnet = 1023, localhost: 1020
-     * @param {Object} config 
+     * @param {number} chainId mainnet: 1024, testnet: 1023, localhost: 1020
+     * @param {number} gasLimit 
+     * @param {number} gasRatio
      */
     constructor(chainId, gasLimit = 2000000, gasRatio = 1) {
         this.gasLimit = gasLimit;

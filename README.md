@@ -34,7 +34,7 @@ const kp = new IOST.KeyPair.Ed25519(IOST.Bs58.decode(secretKey));
 account.addKeyPair('active', kp);
 account.addKeyPair('owner', kp);
 
-const newId = 'test002';
+const newId = 'test001';
 const newKp = IOST.KeyPair.Ed25519.randomKeyPair();
 console.log(newKp.publicKey.length)
 // show secret key of new account

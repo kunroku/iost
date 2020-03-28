@@ -1,5 +1,6 @@
 const path = require('path');
-const moduleName = 'iost';
+const fileName = 'iost';
+const libName = 'IOST';
 const entry = './src/iost.js'
 let webConfig = {
     mode: 'production',
@@ -15,8 +16,8 @@ let webConfig = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: `${moduleName}.min.js`,
-        library: `${moduleName}`,
+        filename: `${fileName}.min.js`,
+        library: `${libName}`,
         libraryTarget: 'umd',
         umdNamedDefine: true,
         globalObject: 'typeof self !== \'undefined\' ? self : this'
@@ -39,8 +40,8 @@ let nodeConfig = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: `${moduleName}.js`,
-        library: `${moduleName}`,
+        filename: `${fileName}.js`,
+        library: `${libName}`,
         libraryTarget: 'commonjs2',
         umdNamedDefine: true,
         globalObject: 'typeof self !== \'undefined\' ? self : this'

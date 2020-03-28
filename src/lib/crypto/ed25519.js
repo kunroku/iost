@@ -17,6 +17,7 @@ class Ed25519 extends KeyPair {
     }
     /**
      * 
+     * @override
      * @param {Buffer} data 
      * @returns {Buffer}
      */
@@ -25,6 +26,7 @@ class Ed25519 extends KeyPair {
     }
     /**
      * 
+     * @override
      * @param {Buffer} data 
      * @param {Buffer} sig 
      * @returns {boolean}
@@ -34,6 +36,7 @@ class Ed25519 extends KeyPair {
     }
     /**
      * 
+     * @override
      * @returns {Crypto.KeyPair}
      */
     static randomKeyPair() {
