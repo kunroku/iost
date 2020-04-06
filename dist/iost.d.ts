@@ -17,7 +17,7 @@ declare class IOST {
     call: (contract: string, abi: string, args: (number | string)[], tx?: Transaction.Tx) => Transaction.Tx
     setPublisher: (account: IOST.Account) => void
     addSigner: (account: IOST.Account, permision: 'active' | 'owner') => void
-    signAndSend: (tx: Transaction.Tx, log?: boolean) => Transaction.Handler
+    signAndSend: (tx: Transaction.Tx, irreversible?: boolean, log?: boolean) => Transaction.Handler
 }
 declare interface IOST {
     Bs58: {
@@ -82,6 +82,8 @@ declare namespace Transaction {
     }
     class Handler {
         public tx: Tx
+        public irreversible: boolean
+        public log: boolean
         public status: 'idle' | 'pending' | 'success' | 'failed'
         public Pending: (res: Response.TransactionPending) => void
         public Success: (res: Response.TxReceipt) => void
@@ -92,7 +94,7 @@ declare namespace Transaction {
         onFailed: (callback: (res: Response.TxReceipt) => any) => Transaction.Handler
         sendTx: () => void
         signAndSend: (publisher: IOST.Account, signers?: { account: IOST.Account, permission: 'active' | 'owner'}[]) => void
-        listen: (interval: number, times: number) => void
+        listen: (interval?: number, times?: number) => void
     }
 }
 declare namespace Crypto {

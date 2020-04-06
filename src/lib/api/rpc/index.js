@@ -35,9 +35,9 @@ class RPC {
                 }
             }
         }
-        this.net = require('./net')(request),
-        this.blockchain = require('./blockchain')(request),
-        this.transaction = require('./transaction')(request),
+        this.net = require('./net')(request);
+        this.blockchain = require('./blockchain')(request);
+        this.transaction = require('./transaction')(request);
         this.economy = require('./economy')(request)
     }
 }

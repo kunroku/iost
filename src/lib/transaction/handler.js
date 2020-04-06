@@ -8,12 +8,14 @@ class Handler {
      * @constructor
      * @param {Transaction.Tx} tx 
      * @param {API.RPC} rpc 
+     * @param {boolean} irreversible wait for tx status code 'IRREVERSIBLE'
      * @param {boolean} log console.log output
      */
-    constructor(tx, rpc, log = false) {
-        let self = this;
+    constructor(tx, rpc, irreversible = false, log = false) {
         this.tx = tx;
+        this.irreversible = irreversible;
         this.log = log;
+        let self = this;
         this.Pending = (res) => {
             if (self.log) console.log(`Pending... tx: ${res.hash}, ${JSON.stringify(self.tx.actions)}`);
             self.status = 'pending';
@@ -147,12 +149,16 @@ class Handler {
                 return
             }
             i++;
-            self.rpc.transaction.getTxReceiptByTxHash(self.hash).then(res => {
+            self.rpc.transaction.getTxByHash(self.hash).then(res => {
+                if (self.irreversible && res.status !== 'IRREVERSIBLE') {
+                    throw new Error('Transaction status is not IRREVERSIBLE')
+                }
+                const receipt = res.transaction.tx_receipt;
                 if (self.log) console.log(`[${interval * i / 1e3} seconds]`);
-                if (res.status_code === 'SUCCESS' && self.status === 'pending') {
-                    self.Success(res)
-                } else if (res.status_code !== undefined && self.status === 'pending') {
-                    self.Failed(res)
+                if (receipt.status_code === 'SUCCESS' && self.status === 'pending') {
+                    self.Success(receipt)
+                } else if (receipt.status_code !== undefined && self.status === 'pending') {
+                    self.Failed(receipt)
                 }
             }).catch(e => {
                 // receipt not found (tx has not mined)
