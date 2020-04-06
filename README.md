@@ -47,6 +47,7 @@ iost.contract.ram.buy(creatorId, newId, 1024, tx);
 iost.setPublisher(account);
 
 const handler = iost.signAndSend(tx);
+handler.listen();
 handler.onPending(console.log);
 handler.onSuccess(console.log);
 handler.onFailed(console.log); 
