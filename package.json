@@ -1,13 +1,12 @@
 {
-    "name": "iost",
+    "name": "iost-js",
     "version": "1.0.0",
     "description": "new iost.js sdk",
-    "main": "webpack.config.js",
+    "main": "index.js",
     "directories": {
         "test": "test"
     },
     "scripts": {
-        "test": "node test/test",
         "build": "webpack",
         "jsdoc": "./node_modules/.bin/jsdoc -c ./jsdoc.json"
     },
@@ -21,12 +20,13 @@
         "js"
     ],
     "author": "kunroku",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/kunroku/iost-js/issues"
     },
     "homepage": "https://github.com/kunroku/iost-js#readme",
     "dependencies": {
+        "@types/node": "^13.7.7",
         "axios": "^0.19.2",
         "bn.js": "^5.1.1",
         "bs58": "^4.0.1",
@@ -36,7 +36,6 @@
         "tweetnacl": "^1.0.3"
     },
     "devDependencies": {
-        "@types/node": "^13.7.7",
         "jsdoc": "^3.6.3",
         "webpack": "^4.41.6",
         "webpack-cli": "^3.3.11"
