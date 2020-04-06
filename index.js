@@ -1,2 +1,2 @@
-const IOST = require('./dist/iost');
+const IOST = require('./src/iost');
 module.exports = IOST;
