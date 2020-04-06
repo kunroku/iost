@@ -15,10 +15,15 @@ npm install iost
 ```
 exports to window.IOST global.
 -->
+
+## Install
+```
+npm install iost-js
+```
 ## Sign up example
 
 ```
-const IOST = require('../src/iost')
+const IOST = require('iost-js');
 
 // init iost sdk (default is for localhost reg test)
 const iost = new IOST({
