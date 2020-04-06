@@ -1,5 +1,5 @@
 {
-    "name": "iost-js",
+    "name": "@kunroku/iost",
     "version": "1.0.0",
     "description": "new iost.js sdk",
     "main": "index.js",
@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/kunroku/iost-js.git"
+        "url": "git+https://github.com/kunroku/iost.git"
     },
     "keywords": [
         "blockchain",
@@ -22,9 +22,9 @@
     "author": "kunroku",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/kunroku/iost-js/issues"
+        "url": "https://github.com/kunroku/iost/issues"
     },
-    "homepage": "https://github.com/kunroku/iost-js#readme",
+    "homepage": "https://github.com/kunroku/iost#readme",
     "dependencies": {
         "@types/node": "^13.7.7",
         "axios": "^0.19.2",

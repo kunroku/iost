@@ -23,7 +23,7 @@ npm install iost-js
 ## Sign up example
 
 ```
-const IOST = require('iost-js');
+const IOST = require('@kunroku/iost');
 
 // init iost sdk (default is for localhost reg test)
 const iost = new IOST({
