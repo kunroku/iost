@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Tx<span class="signature">(chainId, config)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Tx<span class="signature">(chainId, gasLimit, gasRatio)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">IOST Transaction</div>
         
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="Tx"><span class="type-signature"></span>new Tx<span class="signature">(chainId, config)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Tx"><span class="type-signature"></span>new Tx<span class="signature">(chainId, gasLimit, gasRatio)</span><span class="type-signature"></span></h4>
     
 
     
@@ -75,6 +75,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -100,21 +102,25 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last">mainnet = 1024, testnet = 1023, localhost: 1020</td>
+            <td class="description last">mainnet: 1024, testnet: 1023, localhost: 1020</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>config</code></td>
+                <td class="name"><code>gasLimit</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">number</span>
 
 
             
@@ -122,6 +128,41 @@
 
             
 
+            
+                <td class="default">
+                
+                    2000000
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>gasRatio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
             
 
             <td class="description last"></td>
@@ -165,7 +206,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line15">line 15</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -364,7 +405,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line88">line 88</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -553,7 +594,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line44">line 44</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -727,7 +768,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line132">line 132</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line133">line 133</a>
     </li></ul></dd>
     
 
@@ -878,7 +919,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line117">line 117</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line118">line 118</a>
     </li></ul></dd>
     
 
@@ -1052,7 +1093,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line33">line 33</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -1154,7 +1195,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line78">line 78</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -1351,7 +1392,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line102">line 102</a>
+        <a href="lib_transaction_tx.js.html">lib/transaction/tx.js</a>, <a href="lib_transaction_tx.js.html#line103">line 103</a>
     </li></ul></dd>
     
 
@@ -1415,13 +1456,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Account.html">Account</a></li><li><a href="Codec.html">Codec</a></li><li><a href="Contract.html">Contract</a></li><li><a href="Ed25519.html">Ed25519</a></li><li><a href="Handler.html">Handler</a></li><li><a href="IOST.html">IOST</a></li><li><a href="KeyPair.html">KeyPair</a></li><li><a href="RPC.html">RPC</a></li><li><a href="Secp256K1.html">Secp256K1</a></li><li><a href="Signature.html">Signature</a></li><li><a href="Tx.html">Tx</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assignPermission">assignPermission</a></li><li><a href="global.html#balanceOf">balanceOf</a></li><li><a href="global.html#buy">buy</a></li><li><a href="global.html#cancelDelaytx">cancelDelaytx</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#getAccountInfo">getAccountInfo</a></li><li><a href="global.html#getBalance">getBalance</a></li><li><a href="global.html#getBlockByHash">getBlockByHash</a></li><li><a href="global.html#getBlockByNum">getBlockByNum</a></li><li><a href="global.html#getChainInfo">getChainInfo</a></li><li><a href="global.html#getContract">getContract</a></li><li><a href="global.html#getContractStorage">getContractStorage</a></li><li><a href="global.html#getContractStorageFields">getContractStorageFields</a></li><li><a href="global.html#getGasRatio">getGasRatio</a></li><li><a href="global.html#getNodeInfo">getNodeInfo</a></li><li><a href="global.html#getRAMInfo">getRAMInfo</a></li><li><a href="global.html#getToken721Balance">getToken721Balance</a></li><li><a href="global.html#getToken721Metadata">getToken721Metadata</a></li><li><a href="global.html#getToken721Owner">getToken721Owner</a></li><li><a href="global.html#getTokenInfo">getTokenInfo</a></li><li><a href="global.html#getTxByHash">getTxByHash</a></li><li><a href="global.html#getTxReceiptByTxHash">getTxReceiptByTxHash</a></li><li><a href="global.html#issue">issue</a></li><li><a href="global.html#lend">lend</a></li><li><a href="global.html#ownerOf">ownerOf</a></li><li><a href="global.html#pledge">pledge</a></li><li><a href="global.html#receipt">receipt</a></li><li><a href="global.html#requireAuth">requireAuth</a></li><li><a href="global.html#revokePermission">revokePermission</a></li><li><a href="global.html#sell">sell</a></li><li><a href="global.html#sendTx">sendTx</a></li><li><a href="global.html#setCode">setCode</a></li><li><a href="global.html#signUp">signUp</a></li><li><a href="global.html#supply">supply</a></li><li><a href="global.html#tokenMetadata">tokenMetadata</a></li><li><a href="global.html#tokenOfOwnerByIndex">tokenOfOwnerByIndex</a></li><li><a href="global.html#totalSupply">totalSupply</a></li><li><a href="global.html#transfer">transfer</a></li><li><a href="global.html#transferFreeze">transferFreeze</a></li><li><a href="global.html#unpledge">unpledge</a></li><li><a href="global.html#updateCode">updateCode</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Account.html">Account</a></li><li><a href="Codec.html">Codec</a></li><li><a href="Contract.html">Contract</a></li><li><a href="Ed25519.html">Ed25519</a></li><li><a href="Handler.html">Handler</a></li><li><a href="IOST.html">IOST</a></li><li><a href="KeyPair.html">KeyPair</a></li><li><a href="RPC.html">RPC</a></li><li><a href="Secp256k1.html">Secp256k1</a></li><li><a href="Signature.html">Signature</a></li><li><a href="Tx.html">Tx</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assignPermission">assignPermission</a></li><li><a href="global.html#balanceOf">balanceOf</a></li><li><a href="global.html#buy">buy</a></li><li><a href="global.html#cancelDelaytx">cancelDelaytx</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#getAccountInfo">getAccountInfo</a></li><li><a href="global.html#getBalance">getBalance</a></li><li><a href="global.html#getBlockByHash">getBlockByHash</a></li><li><a href="global.html#getBlockByNum">getBlockByNum</a></li><li><a href="global.html#getChainInfo">getChainInfo</a></li><li><a href="global.html#getContract">getContract</a></li><li><a href="global.html#getContractStorage">getContractStorage</a></li><li><a href="global.html#getContractStorageFields">getContractStorageFields</a></li><li><a href="global.html#getGasRatio">getGasRatio</a></li><li><a href="global.html#getNodeInfo">getNodeInfo</a></li><li><a href="global.html#getRAMInfo">getRAMInfo</a></li><li><a href="global.html#getToken721Balance">getToken721Balance</a></li><li><a href="global.html#getToken721Metadata">getToken721Metadata</a></li><li><a href="global.html#getToken721Owner">getToken721Owner</a></li><li><a href="global.html#getTokenInfo">getTokenInfo</a></li><li><a href="global.html#getTxByHash">getTxByHash</a></li><li><a href="global.html#getTxReceiptByTxHash">getTxReceiptByTxHash</a></li><li><a href="global.html#issue">issue</a></li><li><a href="global.html#lend">lend</a></li><li><a href="global.html#ownerOf">ownerOf</a></li><li><a href="global.html#pledge">pledge</a></li><li><a href="global.html#receipt">receipt</a></li><li><a href="global.html#requireAuth">requireAuth</a></li><li><a href="global.html#revokePermission">revokePermission</a></li><li><a href="global.html#sell">sell</a></li><li><a href="global.html#sendTx">sendTx</a></li><li><a href="global.html#setCode">setCode</a></li><li><a href="global.html#signUp">signUp</a></li><li><a href="global.html#supply">supply</a></li><li><a href="global.html#tokenMetadata">tokenMetadata</a></li><li><a href="global.html#tokenOfOwnerByIndex">tokenOfOwnerByIndex</a></li><li><a href="global.html#totalSupply">totalSupply</a></li><li><a href="global.html#transfer">transfer</a></li><li><a href="global.html#transferFreeze">transferFreeze</a></li><li><a href="global.html#unpledge">unpledge</a></li><li><a href="global.html#updateCode">updateCode</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Mar 21 2020 15:10:01 GMT+0900 (Japan Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Apr 06 2020 23:41:16 GMT+0900 (Japan Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
