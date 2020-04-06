@@ -18,7 +18,7 @@ exports to window.IOST global.
 
 ## Install
 ```
-npm install iost-js
+npm install @kunroku/iost
 ```
 ## Sign up example
 
