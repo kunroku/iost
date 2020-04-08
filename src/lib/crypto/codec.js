@@ -9,7 +9,7 @@ class Codec {
      * @constructor
      */
     constructor() {
-        this._buf = Buffer.alloc(0);
+        this._buf = Buffer.alloc(0)
     }
     /**
      * 
