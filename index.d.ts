@@ -29,8 +29,8 @@ declare namespace IOST {
     class Account {
         public id: string;
         public keyPair: {
-            active: Crypto.KeyPair | null,
-            owner: Crypto.KeyPair | null
+            active: Crypto.KeyPair[],
+            owner: Crypto.KeyPair[]
         }
         constructor(id: string)
         addKeyPair: (permission: 'active' | 'owner', keyPair: Crypto.KeyPair) => void
@@ -150,7 +150,7 @@ declare namespace API {
 }
 declare namespace Contract {
     interface Auth {
-        assignPermission: (id: string, permission: 'active' | 'owner', publicKey: number, threshold: number, tx?: Transaction.Tx) => Transaction.Tx
+        assignPermission: (id: string, permission: 'active' | 'owner', publicKey: string, threshold: number, tx?: Transaction.Tx) => Transaction.Tx
         revokePermission: (id: string, permission: 'active' | 'owner', publicKey: string, tx?: Transaction.Tx) => Transaction.Tx
         signUp: (name: string, ownerkey: string, activekey: string, tx?: Transaction.Tx) => Transaction.Tx
     }

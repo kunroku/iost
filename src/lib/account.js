@@ -11,14 +11,8 @@ class Account {
     constructor(id) {
         this.id = id;
         this.keyPair = {
-            active: {
-                publicKey: null,
-                secretKey: null
-            },
-            owner: {
-                publicKey: null,
-                secretKey: null
-            }
+            active: [],
+            owner: []
         }
     }
     /**
@@ -28,7 +22,7 @@ class Account {
      * @returns {void}
      */
     addKeyPair(permission, keyPair) {
-        this.keyPair[permission] = keyPair
+        this.keyPair[permission].push(keyPair)
     }
     /**
      * add signature to transaction as multisigner
@@ -37,7 +31,9 @@ class Account {
      * @returns {void}
      */
     sign(tx, permission) {
-        tx.addSign(this.keyPair[permission])
+        this.keyPair[permission].forEach(keyPair => {
+            tx.addSign(keyPair)
+        })
     }
     /**
      * add signature to transaction as publisher
@@ -45,7 +41,9 @@ class Account {
      * @returns {void}
      */
     publishSign(tx) {
-        tx.addPublishSign(this.id, this.keyPair.active)
+        this.keyPair.active.forEach(keyPair => {
+            tx.addPublishSign(this.id, keyPair)
+        })
     }
 }
 
