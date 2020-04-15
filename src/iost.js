@@ -90,12 +90,11 @@ class IOST {
     /**
      * publish tx by set publisher, signed by set signers
      * @param {Transaction.Tx} tx 
-     * @param {boolean} irreversible wait for tx status code 'IRREVERSIBLE'
      * @param {boolean} log console.log output
      * @returns {Transaction.Handler}
      */
-    signAndSend(tx, irreversible = false, log = false) {
-        const handler = new Handler(tx, this.rpc, irreversible, log);
+    signAndSend(tx, log = false) {
+        const handler = new Handler(tx, this.rpc, log);
         handler.signAndSend(this.publisher, this.signers);
         return handler
     }

@@ -12,7 +12,7 @@ npm install @kunroku/iost
 ## CDN
 
 ```
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@kunroku/iost@1.0.2/dist/iost.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@kunroku/iost@1.0.3/dist/iost.min.js"></script>
 ```
 
 exports to window.IOST global.
@@ -131,11 +131,9 @@ set IOST.Account to IOST instance
 
 for multi signature
 
-##### iost.signAndSend(tx, irreversible?, log?)
+##### iost.signAndSend(tx, log?)
 
 add signature of publisher and signer to tx and then send it
-
-if you don't allow 'PACKED' status tx, set irreverisble true
 
 if you want to check processing time in the console, set log true
 
@@ -148,6 +146,18 @@ handler.onSuccess(res => { console.log(res) });
 handler.onFailed(res => { console.log(res) });
 
 ```
+
+###### handler.listen(config?)
+
+if you want to change listen config, you can set like this
+
+
+```
+handler.listen({ interval: 1000, times: 50, irreversible: true });
+
+```
+
+
 <!--
 #### Official Contract API
 
