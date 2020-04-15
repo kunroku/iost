@@ -17,7 +17,7 @@ declare class IOST {
     call: (contract: string, abi: string, args: (number | string)[], tx?: Transaction.Tx) => Transaction.Tx
     setPublisher: (account: IOST.Account) => void
     addSigner: (account: IOST.Account, permision: 'active' | 'owner') => void
-    signAndSend: (tx: Transaction.Tx, irreversible?: boolean, log?: boolean) => Transaction.Handler
+    signAndSend: (tx: Transaction.Tx, log?: boolean) => Transaction.Handler
 }
 declare interface IOST {
     Bs58: {
@@ -82,8 +82,8 @@ declare namespace Transaction {
     }
     class Handler {
         public tx: Tx
-        public irreversible: boolean
         public log: boolean
+        public listenConfig: Parameter.ListenConfig
         public status: 'idle' | 'pending' | 'success' | 'failed'
         public Pending: (res: Response.TransactionPending) => void
         public Success: (res: Response.TxReceipt) => void
@@ -92,9 +92,10 @@ declare namespace Transaction {
         onPending: (callback: (res: Response.TransactionPending) => any) => Transaction.Handler
         onSuccess: (callback: (res: Response.TxReceipt) => any) => Transaction.Handler
         onFailed: (callback: (res: Response.TxReceipt) => any) => Transaction.Handler
-        sendTx: () => void
+        sign: (publisher: IOST.Account, signers?: { account: IOST.Account, permission: 'active' | 'owner'}[]) => void
+        send: () => void
         signAndSend: (publisher: IOST.Account, signers?: { account: IOST.Account, permission: 'active' | 'owner'}[]) => void
-        listen: (interval?: number, times?: number) => void
+        listen: (config: Parameter.ListenConfig) => void
     }
 }
 declare namespace Crypto {
@@ -228,6 +229,11 @@ declare namespace Parameter {
         delay?: number,
         expiration?: number,
         defaultLimit?: 'unlimited' | number
+    }
+    type ListenConfig = {
+        interval?: number,
+        times?: number,
+        irreversible?: boolean
     }
     type AmountLimit = {
         token: string

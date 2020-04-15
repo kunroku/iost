@@ -16,7 +16,8 @@ class RPC {
             }
             const config = {
                 method: method,
-                url: host + '/' + url,
+                baseURL: host,
+                url: url,
                 data: data,
                 timeout: timeout,
                 headers: {

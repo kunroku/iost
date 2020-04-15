@@ -2,19 +2,23 @@
  * tx handler class
  * @class
  */
+const defaultConfig = {
+    interval: 250,
+    times: 100,
+    irreversible: false
+}
 class Handler {
     /**
      * initialize with tx and rpc
      * @constructor
      * @param {Transaction.Tx} tx 
      * @param {API.RPC} rpc 
-     * @param {boolean} irreversible wait for tx status code 'IRREVERSIBLE'
      * @param {boolean} log console.log output
      */
-    constructor(tx, rpc, irreversible = false, log = false) {
+    constructor(tx, rpc, log = false) {
         this.tx = tx;
-        this.irreversible = irreversible;
         this.log = log;
+        this.listenConfig = defaultConfig;
         let self = this;
         this.Pending = (res) => {
             if (self.log) console.log(`Pending... tx: ${res.hash}, ${JSON.stringify(self.tx.actions)}`);
@@ -100,9 +104,24 @@ class Handler {
     }
     /**
      * 
+     * @param {IOST.Account} publisher publisher account object
+     * @param {Array<{ account: IOST.Account, permision: string }>} signers accuont object and permission pair list
      * @returns {void}
      */
-    sendTx() {
+    sign(publisher, signers = []) {
+        for (const signer of signers) {
+            this.tx.addSigner(signer.account.id, signer.permission)
+        }
+        for (const signer of signers) {
+            signer.account.sign(this.tx, signer.permission)
+        }
+        publisher.publishSign(this.tx);
+    }
+    /**
+     * 
+     * @returns {void}
+     */
+    send() {
         let self = this;
         self.rpc.transaction.sendTx(self.tx).then(res => {
             self.hash = res.hash;
@@ -110,7 +129,6 @@ class Handler {
         }).catch(e => {
             self.Failed(`send tx failed: ${e}`)
         });
-        return this
     }
     /**
      * 
@@ -119,42 +137,36 @@ class Handler {
      * @returns {void}
      */
     signAndSend(publisher, signers = []) {
-        for (const signer of signers) {
-            this.tx.addSigner(signer.account.id, signer.permission)
-        }
-        for (const signer of signers) {
-            signer.account.sign(this.tx, signer.permission)
-        }
-        publisher.publishSign(this.tx);
-        this.sendTx()
+        this.sign(publisher, signers);
+        this.send()
     }
     /**
      * 
-     * @param {number} interval default 250 ms
-     * @param {number} times default 100 times request
+     * @param {Parameter.ListenConfig} config default: empty json
      * @returns {void}
      */
-    listen(interval = 250, times = 100) {
+    listen(config = {}) {
+        Object.assign(this.listenConfig, config);
         let self = this;
         let i = 1;
         let id = setInterval(() => {
             if (self.status === 'idle') {
                 return
             }
-            if (self.status === 'success' || self.status === 'failed' || i > times) {
+            if (self.status === 'success' || self.status === 'failed' || i > self.listenConfig.times) {
                 clearInterval(id);
-                if (self.status !== 'success' && self.status !== 'failed' && i > times) {
+                if (self.status !== 'success' && self.status !== 'failed' && i > self.listenConfig.times) {
                     self.Failed('error: tx ' + self.hash + ' on chain timeout.');
                 }
                 return
             }
             i++;
             self.rpc.transaction.getTxByHash(self.hash).then(res => {
-                if (self.irreversible && res.status !== 'IRREVERSIBLE') {
+                if (self.listenConfig.irreversible && res.status !== 'IRREVERSIBLE') {
                     throw new Error('Transaction status is not IRREVERSIBLE')
                 }
                 const receipt = res.transaction.tx_receipt;
-                if (self.log) console.log(`[${interval * i / 1e3} seconds]`);
+                if (self.log) console.log(`[${self.listenConfig.interval * i / 1e3} seconds]`);
                 if (receipt.status_code === 'SUCCESS' && self.status === 'pending') {
                     self.Success(receipt)
                 } else if (receipt.status_code !== undefined && self.status === 'pending') {
@@ -164,7 +176,7 @@ class Handler {
                 // receipt not found (tx has not mined)
                 if (self.log) process.stdout.write('.')
             })
-        }, interval)
+        }, self.listenConfig.interval)
     }
 }
 
