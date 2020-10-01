@@ -2,6 +2,7 @@ const Tx = require('./lib/transaction/tx');
 const Handler = require('./lib/transaction/handler');
 const RPC = require('./lib/api/rpc');
 const Contract = require('./lib/api/contract');
+const bs58 = require('bs58');
 
 const defaultConfig = {
     host: 'http://127.0.0.1:30001',
@@ -102,9 +103,13 @@ class IOST {
 
 IOST.Account = require('./lib/account');
 IOST.KeyPair = require('./lib/kp');
-IOST.Bs58 = {
-    encode: require('bs58').encode,
-    decode: require('bs58').decode
+IOST.Bs58 = class Bs58 {
+    static encode(buf) {
+        return bs58.encode(buf);
+    }
+    static decode(str) {
+        return bs58.decode(str);
+    }
 }
 
 module.exports = IOST

@@ -19,13 +19,12 @@ declare class IOST {
     addSigner: (account: IOST.Account, permision: 'active' | 'owner') => void
     signAndSend: (tx: Transaction.Tx, log?: boolean) => Transaction.Handler
 }
-declare interface IOST {
-    Bs58: {
-        encode: (buf: Buffer) => string
-        decode: (str: string) => Buffer
-    }
-}
+
 declare namespace IOST {
+    class Bs58 {
+        static encode: (buf: Buffer) => string
+        static decode: (str: string) => Buffer
+    }
     class Account {
         public id: string;
         public keyPair: {
