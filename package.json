@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@kunroku/iost",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "new iost.js sdk",
     "main": "index.js",
     "types": "index.d.ts",
@@ -29,7 +29,7 @@
     "homepage": "https://github.com/kunroku/iost#readme",
     "dependencies": {
         "@types/node": "^13.7.7",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "bn.js": "^5.1.1",
         "bs58": "^4.0.1",
         "elliptic": "^6.5.2",
