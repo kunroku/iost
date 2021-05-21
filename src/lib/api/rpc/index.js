@@ -1,4 +1,9 @@
 const axios = require('axios');
+const Net = require('./net');
+const Blockchain = require('./blockchain');
+const Transaction = require('./transaction');
+const Economy = require('./economy');
+
 /**
  * RPC
  * @class 
@@ -15,11 +20,11 @@ class RPC {
                 if (!data) throw new Error('post data is undefied')
             }
             const config = {
-                method: method,
+                method,
                 baseURL: host,
-                url: url,
-                data: data,
-                timeout: timeout,
+                url,
+                data,
+                timeout,
                 headers: {
                     'Content-Type': 'text/plain'
                 }
@@ -36,10 +41,10 @@ class RPC {
                 }
             }
         }
-        this.net = require('./net')(request);
-        this.blockchain = require('./blockchain')(request);
-        this.transaction = require('./transaction')(request);
-        this.economy = require('./economy')(request)
+        this.net = new Net(request);
+        this.blockchain = new Blockchain(request);
+        this.transaction = new Transaction(request);
+        this.economy = new Economy(request)
     }
 }
 module.exports = RPC;

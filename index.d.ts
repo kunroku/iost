@@ -149,28 +149,28 @@ declare namespace API {
     }
 }
 declare namespace Contract {
-    interface Auth {
+    class Auth {
         assignPermission: (id: string, permission: 'active' | 'owner', publicKey: string, threshold: number, tx?: Transaction.Tx) => Transaction.Tx
         revokePermission: (id: string, permission: 'active' | 'owner', publicKey: string, tx?: Transaction.Tx) => Transaction.Tx
         signUp: (name: string, ownerkey: string, activekey: string, tx?: Transaction.Tx) => Transaction.Tx
     }
-    interface GAS {
+    class GAS {
         pledge: (pledgor: string, to: string, amount: string | number, tx?: Transaction.Tx) => Transaction.Tx
         unpledge: (pledgor: string, from: string, amount: string | number, tx?: Transaction.Tx) => Transaction.Tx
     }
-    interface RAM {
+    class RAM {
         buy: (payer: string, receiver: string, amount: string | number, tx?: Transaction.Tx) => Transaction.Tx
         sell: (seller: string, receiver: string, amount: string | number, tx?: Transaction.Tx) => Transaction.Tx
         lend: (from: string, to: string, amount: string | number, tx?: Transaction.Tx) => Transaction.Tx
     }
-    interface System {
+    class System {
         setCode: (source: string, abi: Object, tx?: Transaction.Tx) => Transaction.Tx
         updateCode: (source: string, abi: Object, contractName: string, data: string, tx?: Transaction.Tx) => Transaction.Tx
         cancelDelaytx: (txHash: string, tx?: Transaction.Tx) => Transaction.Tx
         requireAuth: (account: string, permission: 'active' | 'owner', tx?: Transaction.Tx) => Transaction.Tx
         receipt: (data: string, tx?: Transaction.Tx) => Transaction.Tx
     }
-    interface Token {
+    class Token {
         create: (tokenSym: string, issuer: string, totalSupply: string | number, config: string, tx?: Transaction.Tx) => Transaction.Tx
         issue: (tokenSym: string, to: string, amount: string | number, tx?: Transaction.Tx) => Transaction.Tx
         transfer: (tokenSym: string, from: string, to: string, amount: string | number, memo: string, tx?: Transaction.Tx) => Transaction.Tx
@@ -180,7 +180,7 @@ declare namespace Contract {
         supply: (tokenSym: string, tx?: Transaction.Tx) => Transaction.Tx
         totalSupply: (tokenSym: string, tx?: Transaction.Tx) => Transaction.Tx
     }
-    interface Token721 {
+    class Token721 {
         create: (tokenSym: string, issuer: string, totalSupply: string | number, tx?: Transaction.Tx) => Transaction.Tx
         issue: (tokenSym: string, to: string, metaData: string, tx?: Transaction.Tx) => Transaction.Tx
         transfer: (tokenSym: string, from: string, to: string, tokenID: string, memo: string, tx?: Transaction.Tx) => Transaction.Tx
@@ -192,10 +192,10 @@ declare namespace Contract {
     }
 }
 declare namespace RPC {
-    interface Net {
+    class Net {
         getNodeInfo: () => Promise<Response.NodeInfo>
     }
-    interface Blockchain {
+    class Blockchain {
         getChainInfo: () => Promise<Response.ChainInfo>
         getBlockByHash: (hash: string, complete: boolean) => Promise<Response.Block>
         getBlockByNum: (num: number, complete: boolean) => Promise<Response.Block>
@@ -209,12 +209,12 @@ declare namespace RPC {
         getContractStorageFields: (contractID: string, key: string, pending?: boolean) => Promise<Response.StorageFields>
         getAccountInfo: (id: string, reversible: boolean) => Promise<Response.AccountInfo>
     }
-    interface Transaction {
+    class Transaction {
         sendTx: (tx: Transaction.Tx) => Promise<Response.TransactionPending>
         getTxByHash: (hash: string) => Promise<Response.Tx>
         getTxReceiptByTxHash: (txHash: string) => Promise<Response.TxReceipt>
     }
-    interface Economy {
+    class Economy {
         getGasRatio: () => Promise<Response.GasRation>
         getRAMInfo: () => Promise<Response.RAMInfo>
     }

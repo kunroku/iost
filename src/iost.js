@@ -2,6 +2,9 @@ const Tx = require('./lib/transaction/tx');
 const Handler = require('./lib/transaction/handler');
 const RPC = require('./lib/api/rpc');
 const Contract = require('./lib/api/contract');
+const Account = require('./lib/account');
+const KeyPair = require('./lib/kp');
+
 const bs58 = require('bs58');
 
 const defaultConfig = {
@@ -30,10 +33,7 @@ class IOST {
         this.publisher = null;
         this.signers = [];
         this.serverTimeDiff = 0;
-        this.config = defaultConfig;
-        if (config) {
-            Object.assign(this.config, config);
-        }
+        this.config = { ...defaultConfig, config };
         this.rpc = new RPC(this.config.host);
         this.contract = new Contract(this)
     }
@@ -101,8 +101,8 @@ class IOST {
     }
 }
 
-IOST.Account = require('./lib/account');
-IOST.KeyPair = require('./lib/kp');
+IOST.Account = Account;
+IOST.KeyPair = KeyPair;
 IOST.Bs58 = class Bs58 {
     static encode(buf) {
         return bs58.encode(buf);
