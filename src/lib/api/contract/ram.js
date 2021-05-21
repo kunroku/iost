@@ -17,7 +17,7 @@ module.exports = class RAM {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    buy(payer, receiver, amount, tx = iost.createTx()) {
+    buy(payer, receiver, amount, tx = this.iost.createTx()) {
         if (!Number.isInteger(Number(amount))) {
             throw new Error('amount require integer or string integer')
         }
@@ -37,7 +37,7 @@ module.exports = class RAM {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    sell(seller, receiver, amount, tx = iost.createTx()) {
+    sell(seller, receiver, amount, tx = this.iost.createTx()) {
         if (!Number.isInteger(Number(amount))) {
             throw new Error('amount require integer or string integer')
         }
@@ -57,7 +57,7 @@ module.exports = class RAM {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    lend(from, to, amount, tx = iost.createTx()) {
+    lend(from, to, amount, tx = this.iost.createTx()) {
         if (!Number.isInteger(Number(amount))) {
             throw new Error('amount require integer or string integer')
         }

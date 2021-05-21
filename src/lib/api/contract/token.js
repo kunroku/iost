@@ -19,7 +19,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    create(tokenSym, issuer, totalSupply, config, tx = iost.createTx()) {
+    create(tokenSym, issuer, totalSupply, config, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(totalSupply))) {
             throw new Error('amount totalSupply number or string number')
         }
@@ -35,7 +35,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    issue(tokenSym, to, amount, tx = iost.createTx()) {
+    issue(tokenSym, to, amount, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(amount))) {
             throw new Error('amount require number or string number')
         }
@@ -52,7 +52,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    transfer(tokenSym, from, to, amount, memo, tx = iost.createTx()) {
+    transfer(tokenSym, from, to, amount, memo, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(amount))) {
             throw new Error('amount require number or string number')
         }
@@ -71,7 +71,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    transferFreeze(tokenSym, from, to, amount, ftime, memo, tx = iost.createTx()) {
+    transferFreeze(tokenSym, from, to, amount, ftime, memo, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(amount))) {
             throw new Error('amount require number or string number')
         }
@@ -87,7 +87,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    destroy(tokenSym, from, amount, tx = iost.createTx()) {
+    destroy(tokenSym, from, amount, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(amount))) {
             throw new Error('amount require number or string number')
         }
@@ -102,7 +102,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    balanceOf(tokenSym, from, tx = iost.createTx()) {
+    balanceOf(tokenSym, from, tx = this.iost.createTx()) {
         this.iost.call(contract, 'balanceOf', [tokenSym, from], tx);
         return tx
     }
@@ -112,7 +112,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    supply(tokenSym, tx = iost.createTx()) {
+    supply(tokenSym, tx = this.iost.createTx()) {
         this.iost.call(contract, 'supply', [tokenSym], tx);
         return tx
     }
@@ -122,7 +122,7 @@ module.exports = class Token {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    totalSupply(tokenSym, tx = iost.createTx()) {
+    totalSupply(tokenSym, tx = this.iost.createTx()) {
         this.iost.call(contract, 'totalSupply', [tokenSym], tx);
         return tx
     }

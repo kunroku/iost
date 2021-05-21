@@ -16,7 +16,7 @@ module.exports = class GAS {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    pledge(pledgor, to, amount, tx = iost.createTx()) {
+    pledge(pledgor, to, amount, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(amount))) {
             throw new Error('amount require number or string number')
         }
@@ -35,7 +35,7 @@ module.exports = class GAS {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    unpledge(pledgor, from, amount, tx = iost.createTx()) {
+    unpledge(pledgor, from, amount, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(amount))) {
             throw new Error('amount require number or string number')
         }

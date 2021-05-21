@@ -13,7 +13,7 @@ module.exports = class Auth {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    assignPermission(id, permision, publicKey, threshold, tx = iost.createTx()) {
+    assignPermission(id, permision, publicKey, threshold, tx = this.iost.createTx()) {
         this.iost.call(contract, 'assignPermission', [id, permision, publicKey, threshold], tx);
         return tx
     }
@@ -25,7 +25,7 @@ module.exports = class Auth {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    revokePermission(id, permision, publicKey, tx = iost.createTx()) {
+    revokePermission(id, permision, publicKey, tx = this.iost.createTx()) {
         this.iost.call(contract, 'revokePermission', [id, permision, publicKey], tx);
         return tx
     }
@@ -37,7 +37,7 @@ module.exports = class Auth {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    signUp(name, ownerkey, activekey, tx = iost.createTx()) {
+    signUp(name, ownerkey, activekey, tx = this.iost.createTx()) {
         this.iost.call(contract, 'signUp', [name, ownerkey, activekey], tx);
         return tx
     }

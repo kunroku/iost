@@ -16,7 +16,7 @@ module.exports = class System {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    setCode(source, abi, tx = iost.createTx()) {
+    setCode(source, abi, tx = this.iost.createTx()) {
         const code = { code: source, info: abi };
         this.iost.call(contract, 'setCode', [JSON.stringify(code)], tx);
         return tx
@@ -31,7 +31,7 @@ module.exports = class System {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    updateCode(source, abi, contractName, data, tx = iost.createTx()) {
+    updateCode(source, abi, contractName, data, tx = this.iost.createTx()) {
         const code = { ID: contractName, code: source, info: abi };
         this.iost.call(contract, 'updateCode', [JSON.stringify(code), data], tx);
         return tx
@@ -42,7 +42,7 @@ module.exports = class System {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    cancelDelaytx(txHash, tx = iost.createTx()) {
+    cancelDelaytx(txHash, tx = this.iost.createTx()) {
         this.iost.call(contract, 'cancelDelaytx', [txHash], tx);
         return tx
     }
@@ -53,7 +53,7 @@ module.exports = class System {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    requireAuth(account, permission, tx = iost.createTx()) {
+    requireAuth(account, permission, tx = this.iost.createTx()) {
         this.iost.call(contract, 'requireAuth', [account, permission], tx);
         return tx
     }
@@ -63,7 +63,7 @@ module.exports = class System {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    receipt(data, tx = iost.createTx()) {
+    receipt(data, tx = this.iost.createTx()) {
         this.iost.call(contract, 'receipt', [data], tx);
         return tx
     }

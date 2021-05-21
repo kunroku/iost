@@ -15,7 +15,7 @@ module.exports = class Token721 {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    create(tokenSym, issuer, totalSupply, tx = iost.createTx()) {
+    create(tokenSym, issuer, totalSupply, tx = this.iost.createTx()) {
         if (Number.isNaN(Number(totalSupply))) {
             throw new Error('totalSupply is required number')
         }
@@ -30,7 +30,7 @@ module.exports = class Token721 {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    issue(tokenSym, to, metaData, tx = iost.createTx()) {
+    issue(tokenSym, to, metaData, tx = this.iost.createTx()) {
         this.iost.call(contract, 'issue', [tokenSym, to, metaData], tx);
         return tx
     }
@@ -43,7 +43,7 @@ module.exports = class Token721 {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    transfer(tokenSym, from, to, tokenID, tx = iost.createTx()) {
+    transfer(tokenSym, from, to, tokenID, tx = this.iost.createTx()) {
         this.iost.call(contract, 'transfer', [tokenSym, from, to, tokenID], tx);
         return tx
     }
@@ -54,7 +54,7 @@ module.exports = class Token721 {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    balanceOf(tokenSym, from, tx = iost.createTx()) {
+    balanceOf(tokenSym, from, tx = this.iost.createTx()) {
         this.iost.call(contract, 'balanceOf', [tokenSym, from], tx);
         return tx
     }
@@ -65,7 +65,7 @@ module.exports = class Token721 {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    ownerOf(tokenSym, tokenID, tx = iost.createTx()) {
+    ownerOf(tokenSym, tokenID, tx = this.iost.createTx()) {
         this.iost.call(contract, 'ownerOf', [tokenSym, tokenID], tx);
         return tx
     }
@@ -77,7 +77,7 @@ module.exports = class Token721 {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    tokenOfOwnerByIndex(tokenSym, owner, index, tx = iost.createTx()) {
+    tokenOfOwnerByIndex(tokenSym, owner, index, tx = this.iost.createTx()) {
         this.iost.call(contract, 'tokenOfOwnerByIndex', [tokenSym, owner, index], tx);
         return tx
     }
@@ -88,7 +88,7 @@ module.exports = class Token721 {
      * @param {Transaction.Tx} tx 
      * @returns {Transaction.Tx}
      */
-    tokenMetadata(tokenSym, tokenID, tx = iost.createTx()) {
+    tokenMetadata(tokenSym, tokenID, tx = this.iost.createTx()) {
         this.iost.call(contract, 'tokenMetadata', [tokenSym, tokenID], tx);
         return tx
     }
