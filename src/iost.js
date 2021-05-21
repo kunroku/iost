@@ -33,7 +33,7 @@ class IOST {
         this.publisher = null;
         this.signers = [];
         this.serverTimeDiff = 0;
-        this.config = { ...defaultConfig, config };
+        this.config = { ...defaultConfig, ...config };
         this.rpc = new RPC(this.config.host);
         this.contract = new Contract(this)
     }
