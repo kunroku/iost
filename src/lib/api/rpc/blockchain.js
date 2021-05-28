@@ -134,6 +134,22 @@ module.exports = class Blockchain {
     /**
      * 
      * @param {string} id 
+     * @param {{ key: string, fielod: string }[]} key_fields 
+     * @param {boolean} by_longest_chain 
+     * @returns {Promise<Response.ContractStorageFields>}
+     */
+     getBatchContractStorage(id, key_fields, by_longest_chain = false) {
+        const query = {
+            id,
+            key_fields,
+            by_longest_chain
+        };
+        const api = 'getBatchContractStorage';
+        return this.request('post', api, query)
+    }
+    /**
+     * 
+     * @param {string} id 
      * @param {boolean} reversible 
      * @returns {Promise<Response.AccountInfo>}
      */

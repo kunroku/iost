@@ -207,6 +207,7 @@ declare namespace RPC {
         getContract: (id: string, useLongestChain?: number) => Promise<Response.Contract>
         getContractStorage: (contractID: string, key: string, field: string, pending?: boolean) => Promise<Response.Storage>
         getContractStorageFields: (contractID: string, key: string, pending?: boolean) => Promise<Response.StorageFields>
+        getBatchContractStorage: (contractID: string, key_fields: { key: string, field: string }[], pending?: boolean) => Promise<Response.Storages>
         getAccountInfo: (id: string, reversible: boolean) => Promise<Response.AccountInfo>
     }
     class Transaction {
@@ -332,12 +333,17 @@ declare namespace Response {
         }[]
     }
     type Storage = {
-        data: string
+        data: string,
         block_hash: string,
         block_number: string
     }
     type StorageFields = {
         fields: string[],
+        block_hash: string,
+        block_number: string
+    }
+    type Storages = {
+        datas: string[],
         block_hash: string,
         block_number: string
     }
