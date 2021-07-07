@@ -171,7 +171,12 @@ declare namespace Contract {
         receipt: (data: string, tx?: Transaction.Tx) => Transaction.Tx
     }
     class Token {
-        create: (tokenSym: string, issuer: string, totalSupply: string | number, config: string, tx?: Transaction.Tx) => Transaction.Tx
+        create: (tokenSym: string, issuer: string, totalSupply: string | number, config: {
+            fullName: string;
+            canTransfer: boolean;
+            decimal: number;
+            onlyIssuerCanTransfer: boolean;
+        }, tx?: Transaction.Tx) => Transaction.Tx
         issue: (tokenSym: string, to: string, amount: string | number, tx?: Transaction.Tx) => Transaction.Tx
         transfer: (tokenSym: string, from: string, to: string, amount: string | number, memo: string, tx?: Transaction.Tx) => Transaction.Tx
         transferFreeze: (tokenSym: string, from: string, to: string, amount: string | number, ftime: string | number, memo: string, tx?: Transaction.Tx) => Transaction.Tx

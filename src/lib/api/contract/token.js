@@ -11,7 +11,7 @@ module.exports = class Token {
      * @param {string} tokenSym Token symbol, unique within the contract. Its length should be between 2 and 16 and could only contain characters in [a-z0-9_]
      * @param {string} issuer token issuer who has token issue permission.
      * @param {string|number} totalSupply Total amount of supply
-     * @param {string} config token configuration. It contains 4 keys:
+     * @param {json} config token configuration. It contains 4 keys:
      * fullName —— string type, full name of the token.
      * canTransfer —— bool type, whether the token can be transferred.
      * decimal —— number type, the token decimal.
@@ -23,7 +23,6 @@ module.exports = class Token {
         if (Number.isNaN(Number(totalSupply))) {
             throw new Error('amount totalSupply number or string number')
         }
-        JSON.parse(config);
         this.iost.call(contract, 'create', [tokenSym, issuer, Number(totalSupply), config], tx);
         return tx
     }
