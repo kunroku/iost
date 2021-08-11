@@ -43,6 +43,15 @@ class Ed25519 extends KeyPair {
         const keyPair = nacl.sign.keyPair();
         return new Ed25519(Buffer.from(keyPair.secretKey))
     }
+    /**
+     * 
+     * @param {Buffer} seed 
+     * @returns {Crypto.KeyPair}
+     */
+    static fromSeed(seed) {
+        const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seed));
+        return new Ed25519(Buffer.from(keyPair.secretKey))
+    }
 }
 
 module.exports = Ed25519

@@ -2,10 +2,6 @@ const Tx = require('./lib/transaction/tx');
 const Handler = require('./lib/transaction/handler');
 const RPC = require('./lib/api/rpc');
 const Contract = require('./lib/api/contract');
-const Account = require('./lib/account');
-const KeyPair = require('./lib/kp');
-
-const bs58 = require('bs58');
 
 const defaultConfig = {
     host: 'http://127.0.0.1:30001',
@@ -98,17 +94,6 @@ class IOST {
         const handler = new Handler(tx, this.rpc, log);
         handler.signAndSend(this.publisher, this.signers);
         return handler
-    }
-}
-
-IOST.Account = Account;
-IOST.KeyPair = KeyPair;
-IOST.Bs58 = class Bs58 {
-    static encode(buf) {
-        return bs58.encode(buf);
-    }
-    static decode(str) {
-        return bs58.decode(str);
     }
 }
 
