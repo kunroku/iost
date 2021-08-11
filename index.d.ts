@@ -36,9 +36,9 @@ declare namespace IOST {
         addSigner: (account: IOST.Account, permision: 'active' | 'owner') => void
         signAndSend: (tx: IOST.Transaction.Tx, log?: boolean) => IOST.Transaction.Handler
     }
-    interface Bs58 {
-        encode: (buf: Buffer) => string
-        decode: (str: string) => Buffer
+    class Bs58 {
+        static encode: (buf: Buffer) => string
+        static decode: (str: string) => Buffer
     }
     class Account {
         public id: string;

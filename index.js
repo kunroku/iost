@@ -12,14 +12,14 @@ const Codec = require('./src/lib/crypto/codec');
 exports.IOST = IOST;
 exports.Account = Account;
 exports.KeyPair = KeyPair;
-exports.Bs58 = {
-  encode: (buf) => {
+exports.Bs58 = class Bs58 {
+  static encode(buf) {
     return bs58.encode(buf);
-  },
-  decode: (str) => {
+  }
+  static decode(str) {
     return bs58.decode(str);
-  },
-};
+  }
+}
 exports.Transaction = {
   Tx,
   Handler,
