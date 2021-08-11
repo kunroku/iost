@@ -10,9 +10,8 @@ const Signature = require('./src/lib/crypto/signature');
 const Codec = require('./src/lib/crypto/codec');
 
 exports.IOST = IOST;
-exports.Account = Account;
-exports.KeyPair = KeyPair;
-exports.Bs58 = class Bs58 {
+
+class Bs58 {
   static encode(buf) {
     return bs58.encode(buf);
   }
@@ -20,16 +19,20 @@ exports.Bs58 = class Bs58 {
     return bs58.decode(str);
   }
 }
-exports.Transaction = {
+
+IOST.Account = Account;
+IOST.KeyPair = KeyPair;
+IOST.Bs58 = Bs58;
+IOST.Transaction = {
   Tx,
   Handler,
 };
-exports.Crypto = {
+IOST.Crypto = {
   KeyPair: IKeyPair,
   Signature,
   Codec,
 };
-exports.API = {
+IOST.API = {
   Contract,
   RPC,
 };
