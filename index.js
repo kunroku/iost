@@ -8,6 +8,7 @@ const KeyPair = require('./src/lib/kp');
 const IKeyPair = require('./src/lib/crypto/ikp');
 const Signature = require('./src/lib/crypto/signature');
 const Codec = require('./src/lib/crypto/codec');
+const bs58 = require('bs58');
 
 exports.IOST = IOST;
 
