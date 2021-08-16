@@ -8,22 +8,15 @@ const KeyPair = require('./src/lib/kp');
 const IKeyPair = require('./src/lib/crypto/ikp');
 const Signature = require('./src/lib/crypto/signature');
 const Codec = require('./src/lib/crypto/codec');
-const bs58 = require('bs58');
+const Bs58 = require('./src/lib/bs58');
+const ContractABI = require('./src/lib/abi');
 
 exports.IOST = IOST;
-
-class Bs58 {
-  static encode(buf) {
-    return bs58.encode(buf);
-  }
-  static decode(str) {
-    return bs58.decode(str);
-  }
-}
 
 IOST.Account = Account;
 IOST.KeyPair = KeyPair;
 IOST.Bs58 = Bs58;
+IOST.ContractABI = ContractABI;
 IOST.Transaction = {
   Tx,
   Handler,

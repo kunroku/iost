@@ -40,6 +40,13 @@ declare namespace IOST {
         static encode: (buf: Buffer) => string
         static decode: (str: string) => Buffer
     }
+    class ContractABI implements Parameter.IContractABI {
+        public lang: string;
+        public version: string;
+        public abi: Parameter.ContractABIElementType[];
+        constructor(lang: string, version: string, abi: Parameter.ContractABIElementType[])
+        static compile: (source: string) => ContractABI;
+    }
     class Account {
         public id: string;
         public keyPair: {
@@ -185,6 +192,19 @@ declare namespace IOST {
             contract: string
             actionName: string
             data: []
+        }
+        type ContractABIElementType = {
+            name: string;
+            args: string[];
+            amountLimit: {
+                token: string;
+                val: string;
+            }[];
+        }
+        interface IContractABI {
+            lang: string;
+            version: string;
+            abi: IOST.Parameter.ContractABIElementType[];
         }
     }
     namespace Response {
@@ -368,7 +388,7 @@ declare namespace IOST {
             sell_price: number,
             buy_price: number
         }
-    }    
+    }
 }
 declare namespace Contract {
     class Auth {
@@ -386,7 +406,7 @@ declare namespace Contract {
         lend: (from: string, to: string, amount: string | number, tx?: IOST.Transaction.Tx) => IOST.Transaction.Tx
     }
     class System {
-        setCode: (source: string, abi: Object, tx?: IOST.Transaction.Tx) => IOST.Transaction.Tx
+        setCode: (source: string, abi: IOST.Parameter.IContractABI, tx?: IOST.Transaction.Tx) => IOST.Transaction.Tx
         updateCode: (source: string, abi: Object, contractName: string, data: string, tx?: IOST.Transaction.Tx) => IOST.Transaction.Tx
         cancelDelaytx: (txHash: string, tx?: IOST.Transaction.Tx) => IOST.Transaction.Tx
         requireAuth: (account: string, permission: 'active' | 'owner', tx?: IOST.Transaction.Tx) => IOST.Transaction.Tx
