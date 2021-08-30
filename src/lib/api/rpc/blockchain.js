@@ -138,14 +138,35 @@ module.exports = class Blockchain {
      * @param {boolean} by_longest_chain 
      * @returns {Promise<Response.ContractStorageFields>}
      */
-     getBatchContractStorage(id, key_fields, by_longest_chain = false) {
-        const query = {
-            id,
-            key_fields,
-            by_longest_chain
-        };
+    async getBatchContractStorage(id, key_fields, by_longest_chain = false) {
+        const chunkedQuery = [];
+        for (let i = 0; i < key_fields.length; i++) {
+            if (i % 50 === 0) {
+                chunkedQuery.push({
+                    id,
+                    key_fields: [],
+                    by_longest_chain
+                });
+            }
+            chunkedQuery[chunkedQuery.length - 1].key_fields.push(key_fields[i]);
+        }
         const api = 'getBatchContractStorage';
-        return this.request('post', api, query)
+        const res = {
+            datas: [],
+            block_hash: '',
+            block_number: ''
+        };
+        for (const query of chunkedQuery) {
+            const {
+                datas,
+                block_hash,
+                block_number
+            } = await this.request('post', api, query);
+            res.datas.push(...datas);
+            res.block_hash = block_hash;
+            res.block_number = block_number;
+        }
+        return res
     }
     /**
      * 
