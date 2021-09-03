@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@kunroku/iost",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "description": "new iost.js sdk",
     "main": "index.js",
     "types": "index.d.ts",
