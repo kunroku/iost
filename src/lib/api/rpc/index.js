@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios').default;
 const Net = require('./net');
 const Blockchain = require('./blockchain');
 const Transaction = require('./transaction');
@@ -15,7 +15,7 @@ class RPC {
      * @param {number} timeout 
      */
     constructor(host, timeout = undefined) {
-        const request = async (method, url, data = undefined) => {
+        const request = async (method, url, data = undefined, isStream = false) => {
             if (method === 'post') {
                 if (!data) throw new Error('post data is undefied')
             }
@@ -29,6 +29,9 @@ class RPC {
                     'Content-Type': 'text/plain'
                 }
             };
+            if (isStream) {
+                config.responseType = 'stream';
+            }
             try {
                 const response = await axios(config);
                 return response.data;
@@ -37,7 +40,7 @@ class RPC {
                     throw new Error(`${JSON.stringify(error.response.data)}`);
                 }
                 else {
-                    throw new Error(`${error}`);
+                    throw new Error(error.message);
                 }
             }
         }

@@ -179,6 +179,7 @@ declare namespace IOST {
             expiration?: number,
             defaultLimit?: 'unlimited' | number
         }
+        type SubscribeEventType = 'CONTRACT_EVENT' | 'CONTRACT_RECEIPT';
         type ListenConfig = {
             interval?: number,
             times?: number,
@@ -211,6 +212,15 @@ declare namespace IOST {
         type TransactionPending = {
             hash: string,
             pre_tx_receipt: IOST.Response.TxReceipt | null
+        }
+        type Subscribe = {
+            result: {
+                event: {
+                    topic: IOST.Parameter.SubscribeEventType;
+                    data: string;
+                    time: string;
+                }
+            }
         }
         type NodeInfo = {
             build_time: string,
@@ -456,6 +466,7 @@ declare namespace RPC {
         getContractStorageFields: (contractID: string, key: string, pending?: boolean) => Promise<IOST.Response.StorageFields>
         getBatchContractStorage: (contractID: string, key_fields: { key: string, field: string }[], pending?: boolean) => Promise<IOST.Response.Storages>
         getAccountInfo: (id: string, reversible: boolean) => Promise<IOST.Response.AccountInfo>
+        subscribe: (topics: IOST.Parameter.SubscribeEventType[], contract_id: string, onSubscribe: (messages: IOST.Response.Subscribe[]) => Promise<boolean>) => Promise<IOST.Response.Subscribe[][]>;
     }
     class Transaction {
         sendTx: (tx: IOST.Transaction.Tx) => Promise<IOST.Response.TransactionPending>

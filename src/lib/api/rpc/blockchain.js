@@ -178,4 +178,35 @@ module.exports = class Blockchain {
         const api = 'getAccount/' + id + '/' + (reversible ? 1 : 0);
         return this.request('get', api)
     }
+    /**
+     * 
+     * @param {('CONTRACT_EVENT'|'CONTRACT_RECEIPT')[]} topics 
+     * @param {string} contract_id 
+     * @param {(data: Response.Subscribe[]) => Promise<boolean>} onSubscribe 
+     * @returns {Promise<Response.Subscribe[][]>}
+     */
+    subscribe(topics, contract_id, onSubscribe) {
+        const api = 'subscribe';
+        const body = {
+            topics: topics,
+            filter: { contract_id },
+        };
+        console.log(body);
+        return this.request('post', api, body, true)
+            .then(async (readable) => {
+                const allMessages = [];
+                for await (const chunk of readable) {
+                    const messages = Buffer.from(chunk)
+                        .toString('utf-8')
+                        .split('\n')
+                        .filter((data) => data !== '')
+                        .map(JSON.parse);
+                    allMessages.push(messages);
+                    if (!(await onSubscribe(messages))) {
+                        break;
+                    }
+                }
+                return allMessages;
+            })
+    }
 }
