@@ -454,8 +454,8 @@ declare namespace RPC {
     }
     class Blockchain {
         getChainInfo: () => Promise<IOST.Response.ChainInfo>
-        getBlockByHash: (hash: string, complete: boolean) => Promise<IOST.Response.Block>
-        getBlockByNum: (num: number, complete: boolean) => Promise<IOST.Response.Block>
+        getBlockByHash: (hash: string, complete?: boolean) => Promise<IOST.Response.Block>
+        getBlockByNum: (num: number, complete?: boolean) => Promise<IOST.Response.Block>
         getTokenInfo: (symbol: string, useLongestChain?: number) => Promise<IOST.Response.TokenInfo>
         getBalance: (address: string, tokenSymbol?: string, useLongestChain?: number) => Promise<IOST.Response.TokenBalance>
         getToken721Balance: (address: string, tokenSymbol: string, useLongestChain?: number) => Promise<IOST.Response.Token721Balance>
@@ -465,7 +465,7 @@ declare namespace RPC {
         getContractStorage: (contractID: string, key: string, field: string, pending?: boolean) => Promise<IOST.Response.Storage>
         getContractStorageFields: (contractID: string, key: string, pending?: boolean) => Promise<IOST.Response.StorageFields>
         getBatchContractStorage: (contractID: string, key_fields: { key: string, field: string }[], pending?: boolean) => Promise<IOST.Response.Storages>
-        getAccountInfo: (id: string, reversible: boolean) => Promise<IOST.Response.AccountInfo>
+        getAccountInfo: (id: string, reversible?: boolean) => Promise<IOST.Response.AccountInfo>
         subscribe: (topics: IOST.Parameter.SubscribeEventType[], contract_id: string, onSubscribe: (messages: IOST.Response.Subscribe[]) => Promise<boolean>) => Promise<IOST.Response.Subscribe[][]>;
     }
     class Transaction {
